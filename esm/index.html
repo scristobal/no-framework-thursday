@@ -1,0 +1,37 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link rel="stylesheet" href="/index.css" />
+        <link rel="stylesheet" href="./index.css" />
+
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+        <script type="importmap">
+            {
+                "imports": {
+                    "standard-counter": "./modules/standard-counter.mjs",
+                    "fibonacci-counter": "./modules/fibonacci-counter.mjs"
+                }
+            }
+        </script>
+
+        <script type="module" src="./index.mjs"></script>
+
+        <title>Counter ex.</title>
+    </head>
+    <body>
+        <main>
+            <h1>ESModules</h1>
+
+            <div id="counter">
+                <span id="counter-descriptor"></span>
+                <span id="count"></span>
+
+                <button type="button" id="increase">&uparrow;</button>
+                <button type="button" id="switch">Switch</button>
+            </div>
+        </main>
+    </body>
+</html>
