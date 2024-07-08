@@ -14,3 +14,6 @@ insert_final_newline = true
 
 [*.{yml,yaml,json}]
 indent_size = 2
+
+[Makefile]
+indent_size = tab

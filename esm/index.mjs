@@ -40,3 +40,20 @@ function switchCounter(counterDescriptor) {
         })
     })
 }
+
+try {
+    const importObj = {
+        Math: {
+            random: () => Math.random(),
+        },
+    }
+
+    const response = await fetch('./modules/rust_wasm_sample.wasm')
+    const { instance } = await WebAssembly.instantiateStreaming(response, importObj)
+
+    const res = instance.exports.add(40, 2)
+
+    console.log(res)
+} catch (e) {
+    console.log('Error loading WASM module', e)
+}
