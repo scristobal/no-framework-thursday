@@ -4,6 +4,6 @@ extern "C" {
 }
 
 #[no_mangle]
-pub extern "C" fn add(left: usize, right: usize) -> usize {
-    left + right + unsafe { (random() * 100.0) as usize }
+pub extern "C" fn add_random(value: usize) -> usize {
+    value + unsafe { (random() * 100.0) as usize }
 }

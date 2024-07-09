@@ -11,8 +11,7 @@
         <script type="importmap">
             {
                 "imports": {
-                    "standard-counter": "./modules/standard-counter.mjs",
-                    "fibonacci-counter": "./modules/fibonacci-counter.mjs"
+                    "counter": "./modules/counter.mjs"
                 }
             }
         </script>
@@ -26,11 +25,9 @@
             <h1>ESModules</h1>
 
             <div id="counter">
-                <span id="counter-descriptor"></span>
-                <span id="count"></span>
-
-                <button type="button" id="increase">&uparrow;</button>
-                <button type="button" id="switch">Switch</button>
+                <span id="count">0</span>
+                <button type="button" id="increase">++</button>
+                <button type="button" id="random">+?</button>
             </div>
         </main>
     </body>

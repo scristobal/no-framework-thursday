@@ -1,59 +1,33 @@
-const counterSpan = document.getElementById('count')
-const counterDescriptorSpan = document.getElementById('counter-descriptor')
+const counterSpan = document.getElementById("count");
 
-const increaseButton = document.getElementById('increase')
+const increaseButton = document.getElementById("increase");
+const randomButton = document.getElementById("random");
 
-const switchButton = document.getElementById('switch')
+let counter;
+let add_random;
 
-let currentCounterDescriptor = 'standard-counter'
+async function increaseCounter() {
+	if (!counter) {
+		const module = await import("counter");
 
-switchButton.addEventListener('click', () => {
-    switch (currentCounterDescriptor) {
-        case 'standard-counter':
-            currentCounterDescriptor = 'fibonacci-counter'
-            break
-        case 'fibonacci-counter':
-            currentCounterDescriptor = 'standard-counter'
-            break
-    }
+		counter = module.counter;
+	}
 
-    switchCounter(currentCounterDescriptor)
-})
-
-switchCounter('standard-counter')
-
-function switchCounter(counterDescriptor) {
-    counterDescriptorSpan.textContent = counterDescriptor
-
-    import(counterDescriptor).then((Module) => {
-        const counter = Module.counter
-
-        function updateCounter() {
-            counterSpan.textContent = counter.state.toString().padStart(6, '0')
-        }
-
-        updateCounter()
-
-        increaseButton.addEventListener('click', () => {
-            counter.increment()
-            updateCounter()
-        })
-    })
+	counter.increment();
+	counterSpan.textContent = counter.text;
 }
 
-try {
-    const importObj = {
-        Math: {
-            random: () => Math.random(),
-        },
-    }
+async function addRandomCounter() {
+	if (!add_random) {
+		const response = await fetch("./modules/rust_wasm_sample.wasm");
+		const module = await WebAssembly.instantiateStreaming(response, { Math });
 
-    const response = await fetch('./modules/rust_wasm_sample.wasm')
-    const { instance } = await WebAssembly.instantiateStreaming(response, importObj)
+		add_random = module.instance.exports.add_random;
+	}
 
-    const res = instance.exports.add(40, 2)
-
-    console.log(res)
-} catch (e) {
-    console.log('Error loading WASM module', e)
+	counter.state = add_random(counter.state);
+	counterSpan.textContent = counter.text;
 }
+
+increaseButton.addEventListener("click", increaseCounter);
+randomButton.addEventListener("click", addRandomCounter);
