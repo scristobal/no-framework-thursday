@@ -3,32 +3,40 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <link rel="stylesheet" href="/index.css" />
         <link rel="stylesheet" href="./index.css" />
 
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
+        <!-- NOTE: External import maps are not yet supported. https://github.com/WICG/import-maps/issues/235 -->
+        <!-- <script type="importmap" src="./importmaps.json"></script> -->
+
         <script type="importmap">
             {
                 "imports": {
-                    "counter": "./modules/counter.mjs"
+                    "counter": "./counter.mjs"
                 }
             }
         </script>
 
-        <script type="module" src="./index.mjs"></script>
+        <!-- <script type="module" src="./index.js"></script> -->
+        <!-- NOTE: type="module" is not required because we are dynamically loading only -->
+        <script defer src="./index.js"></script>
 
         <title>Counter ex.</title>
     </head>
     <body>
         <main>
-            <h1>ESModules</h1>
-
+            <h1>DLC</h1>
+            <p>Dynamically Loaded Counter</p>
             <div id="counter">
                 <span id="count">0</span>
                 <button type="button" id="increase">++</button>
                 <button type="button" id="random">+?</button>
             </div>
+            <small>
+                Open Network tab in developer tools to verify .js and .wasm
+                files are fetched on demand.
+            </small>
         </main>
     </body>
 </html>

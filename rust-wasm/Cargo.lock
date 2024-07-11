@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "rust-wasm-sample"
+name = "rust-wasm"
 version = "0.1.0"
