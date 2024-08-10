@@ -5,4 +5,4 @@ fix:
     npx @biomejs/biome@1.8.3 check --write
 
 serve:
-    npx http-server@14.1.1 ./site  -o  -p 9999
+    npx live-server --mount=/:./site --port=9999

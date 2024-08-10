@@ -1,5 +1,5 @@
 {
-  "imports": {
-    "counter": "./counter.mjs"
-  }
+	"imports": {
+		"counter": "./counter.mjs"
+	}
 }

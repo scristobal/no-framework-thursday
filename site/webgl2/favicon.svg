@@ -1,0 +1,16 @@
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" encoding="utf-8">
+    <text x="50" y="50" text-anchor="middle" alignment-baseline="middle" font-size="100">★</text>
+    <style>
+        svg {
+            fill: black;
+            stroke: black;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            svg {
+                fill: white;
+                stroke: white;
+            }
+        }
+    </style>
+</svg>
